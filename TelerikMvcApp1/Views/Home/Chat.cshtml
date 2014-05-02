@@ -13,9 +13,10 @@
         scrollbar-base-color: #ff8c00;
         scrollbar-arrow-color: white;
         resize: none;
-        overflow: auto;
-        
+        overflow: auto;  
     }
+    
+
 </style>
 <body>
     <div class="textarea">
@@ -30,11 +31,12 @@
             </tr>
             <tr>
                 <td>
-                    <textarea readonly id="discussion" rows="7" cols="50"></textarea>
+                    <!--<textarea readonly id="discussion" rows="7" cols="50"></textarea>-->
+                    <div id='fake_textarea' class="DivToScroll DivWithScroll" style="float: left;" contenteditable></div>
                 </td>
                 <td>
                     <div class="textarea">                  
-                        <textarea readonly id="Clan"></textarea>
+                        <textarea style="float: right;" readonly id="Clan"></textarea>
                     </div>
                 </td>
             </tr>
@@ -68,7 +70,8 @@
             // Add the message to the page.
             //$('#discussion').append('<li><strong>' + encodedName
             //   + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-            $('#discussion').val($('#discussion').val() + encodedName + ": " + encodedMsg + "\n");
+            $('#fake_textarea').append('<p class="triangle-border left">'+ 'Buttttt it could be any element you want.' + '</p>');
+           // $('#discussion').val($('#discussion').val() + encodedName + ": " + encodedMsg + "\n");
         };
         console.log("@ViewBag.name");
         // Get the user name and store it to prepend to messages.
