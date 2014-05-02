@@ -8,8 +8,8 @@
 <style type="text/css">
     textarea {
         width: 300px;
-        height: 100px;
-        max-height: 100px;
+        height: 400px;
+        max-height: 400px;
         scrollbar-base-color: #ff8c00;
         scrollbar-arrow-color: white;
         resize: none;
@@ -26,17 +26,17 @@
 
                 </td>
                 <td>
-                    <h2 align="right">Clan</h2>
+                    <h1 style="margin-left: 500px;" align="right">Buddies</h1>
                 </td>
             </tr>
             <tr>
                 <td>
                     <!--<textarea readonly id="discussion" rows="7" cols="50"></textarea>-->
-                    <div id='fake_textarea' class="DivToScroll DivWithScroll" style="float: left;" contenteditable></div>
+                    <div id='chat_area' class="DivToScroll DivWithScroll" style="margin-left: 40px; float: left;" contenteditable></div>
                 </td>
                 <td>
                     <div class="textarea">                  
-                        <textarea style="float: right;" readonly id="Clan"></textarea>
+                        <textarea style="float: right; margin-left: 500px;" readonly id="Buddies"></textarea>
                     </div>
                 </td>
             </tr>
@@ -44,8 +44,8 @@
                 <td>
                     <input type="hidden" id="displayname" />
                     <br />
-                    <input type="text" id="message" />
-                    <input type="button" id="sendmessage" value="Send" />
+                    <input style="margin-left: 40px;" type="text" id="message" />
+                    <input style="margin-left: 300px;" type="button" id="sendmessage" value="Send" />
                 </td>
             </tr>
         </table>
@@ -58,8 +58,8 @@
 
 <script type="text/javascript">
     $(function () {
-        //When a user enters the NakamaChat the user will display under Clan 
-        $('#Clan').val($('#Clan').val() + "@ViewBag.name\n");
+        //When a user enters the NakamaChat the user will display under Buddies 
+        $('#Buddies').val($('#Buddies').val() + "@ViewBag.name\n");
         // Declare a proxy to reference the hub.
         var chat = $.connection.chatHub;
         // Create a function that the hub can call to broadcast messages.
@@ -67,10 +67,11 @@
             // Html encode display name and message.
             var encodedName = $('<div />').text(name).html();
             var encodedMsg = $('<div />').text(message).html();
+            var actualMessage = encodedName + ' : ' + encodedMsg;
             // Add the message to the page.
             //$('#discussion').append('<li><strong>' + encodedName
             //   + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-            $('#fake_textarea').append('<p class="triangle-border left">'+ 'Buttttt it could be any element you want.' + '</p>');
+            $('#chat_area').append('<p class="triangle-obtuse left">' + actualMessage + '</p>');
            // $('#discussion').val($('#discussion').val() + encodedName + ": " + encodedMsg + "\n");
         };
         console.log("@ViewBag.name");
