@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Shout";
+}
+
+<h2>Shout</h2>
+
+<form method="post">
+    <input type="hidden" name="shouted" value="1" />
+
+    <fieldset>
+        <legend>Enter a message:</legend>
+        <table>
+            <tr>
+                <td>Message:</td>
+                <td><input type="text" name="message" /></td>
+            </tr>
+        </table>
+    </fieldset>
+    <input type="submit" value="Send" />
+</form>
