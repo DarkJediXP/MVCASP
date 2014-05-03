@@ -15,9 +15,8 @@
     <script src="@Url.Content("~/Scripts/jquery.signalR-2.0.3.js")"></script>
     <script src="@Url.Content("~/signalr/hubs")"></script>
 </head>
-<body>
-    <header>
-    </header>
+<body >
+    <header></header>
     <div id="body">
         @RenderSection("featured", required: false)
         <section>
@@ -26,7 +25,7 @@
     </div>
 
     <footer>
-        <div >
+        <div>
             <div class="float-left">
                 <p>&copy; @DateTime.Now.Year - Project 3</p>
             </div>
