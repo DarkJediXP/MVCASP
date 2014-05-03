@@ -62,6 +62,7 @@
         $('#Buddies').val($('#Buddies').val() + "@ViewBag.name\n");
         // Declare a proxy to reference the hub.
         var chat = $.connection.chatHub;
+        console.log(chat.name);
         // Create a function that the hub can call to broadcast messages.
         chat.client.broadcastMessage = function (name, message) {
             // Html encode display name and message.
@@ -71,7 +72,12 @@
             // Add the message to the page.
             //$('#discussion').append('<li><strong>' + encodedName
             //   + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-            $('#chat_area').append('<p class="triangle-obtuse left">' + actualMessage + '</p>');
+            if("@ViewBag.name" == name){
+                $('#chat_area').append('<p class="triangle-isosceles right">' + actualMessage + '</p>');
+            }
+            else {
+                $('#chat_area').append('<p class="triangle-right left">' + actualMessage + '</p>');
+            }
            // $('#discussion').val($('#discussion').val() + encodedName + ": " + encodedMsg + "\n");
         };
         console.log("@ViewBag.name");
@@ -86,6 +92,7 @@
             $('#sendmessage').click(function () { // on click listner for the send message button
                 // Call the Send method on the hub.
                 chat.server.send($('#displayname').val(), $('#message').val());
+                console.log(chat.messages);
                 console.log($('#message').val());
                 // Clear text box and reset focus for next comment.
                 $('#message').val('').focus();

@@ -38,7 +38,7 @@ namespace TelerikMvcApp1.Controllers
 
             //Checks to see if user is an admin and the password is test
             // if thsi is correct it will send the user to the chat view
-            if (username == "Admin" && password == "test")
+            if ((username == "Admin" || username == "user") && password == "test")
             {
                 ViewBag.name = (string)username;
                 return View("Chat", new {name = username });
