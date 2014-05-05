@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Main";
+    ViewBag.WelcomeMessage = "Main Menu";
+}
+
+<div style="float: left; width: 350px;">
+        <table>
+            <tr>
+                <h5>@ViewBag.WelcomeMessage</h5>
+                <td>
+                    <form action="@Url.Content("~/Home/Chat")" method="post">
+                        <input type="hidden" value ="@ViewBag.name" name="username">
+                        <input type="submit" value="Chat">
+                    </form>
+                </td>
+            <tr>
+                <td>
+                    <form action="@Url.Content("~/Home/EditUserInfo")" method="post">
+                        <input type="hidden" value="@ViewBag.name" name="username">
+                        <input type="submit" value="Edit Info">
+                    </form>
+                </td>
+            </tr>
+        </table>
+</div>
+
+<script type="text/javascript">
+    $('#displayname').val("@ViewBag.name");
+</script>
