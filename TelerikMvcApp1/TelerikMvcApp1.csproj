@@ -437,6 +437,8 @@
     <Content Include="bootstrap\bootstrap-3.1.1-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap\bootstrap-3.1.1-dist\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\happyface.png" />
+    <Content Include="Images\smiley-laugh.png" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
