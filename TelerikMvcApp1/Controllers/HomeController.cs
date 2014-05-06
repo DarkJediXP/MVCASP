@@ -41,7 +41,7 @@ namespace TelerikMvcApp1.Controllers
             if ((username == "Admin" || username == "user") && password == "test")
             {
                 ViewBag.name = (string)username;
-                return View("Chat", new {name = username });
+                return View("Main", new { name = username });
             }
             else
             {
@@ -78,9 +78,17 @@ namespace TelerikMvcApp1.Controllers
 
 
         // This is the controller for the Chat() view
-        public ActionResult Chat(string name)
+        public ActionResult Chat(string username)
         {
             ViewBag.Message = "Chat, please!";
+            ViewBag.name = (string)username;
+            return View();
+        }
+
+        public ActionResult Main(string name)
+        {
+            ViewBag.Message = "Chat, please!";
+            ViewBag.name = (string)name;
             return View();
         }
 
