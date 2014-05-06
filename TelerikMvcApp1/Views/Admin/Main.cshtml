@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "Main";
-    ViewBag.WelcomeMessage = "Main Menu";
-    Core.User userObject = (Core.User)ViewBag.user;
+    ViewBag.WelcomeMessage = "Admin Main Menu";
 }
 
 <div style="float: left; width: 350px;">
@@ -10,15 +9,15 @@
                 <h5>@ViewBag.WelcomeMessage</h5>
                 <td>
                     <form action="@Url.Content("~/Home/Chat")" method="post">
-                        <input type="hidden" value ="@userObject.Username" name="username">
+                        <input type="hidden" value ="@ViewBag.name" name="username">
                         <input type="submit" value="Chat">
                     </form>
                 </td>
             <tr>
                 <td>
-                    <form action="@Url.Content("~/Home/EditUserInfo")" method="post">
-                        <input type="hidden" value="@userObject.User_id" name="userid">
-                        <input type="submit" value="Edit Info">
+                    <form action="@Url.Content("~/Admin/ControlPanel")" method="post">
+                        <input type="hidden" value="@ViewBag.name" name="username">
+                        <input type="submit" value="Control Panel">
                     </form>
                 </td>
             </tr>

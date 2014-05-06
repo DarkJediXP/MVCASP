@@ -27,8 +27,6 @@ namespace TelerikMvcApp1.Controllers
             return View();
         }
 
-
-
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AuthenticateUser(Core.User userToAdd, string password)
         {
@@ -36,22 +34,27 @@ namespace TelerikMvcApp1.Controllers
             string username = userToAdd.Username;
             ContentResult res = new ContentResult();
 
-            //Checks to see if user is an admin and the password is test
-            // if thsi is correct it will send the user to the chat view
-            if ((username == "Admin" || username == "user") && password == "test")
-            {
-                ViewBag.name = (string)username;
-                return View("Main", new { name = username });
-            }
-            else
-            {
-                //or it will return that the username does not exist in the database
-                // or the password is incorrect
+            var db = ContextFactory.GetContextPerRequest();
+            try { 
+                var user = (from u in db.Users
+                            where u.Username == username &&
+                                  u.Password == password
+                            select u).Single();
+
+                if (user != null && user.Username == "Admin" && user.Password == "test")
+                {
+                    ViewBag.user= user;
+                    return RedirectToAction("Main", "Admin", new { name = username });
+                }
+                else
+                {
+                    ViewBag.user = user;
+                    return View("Main");
+                }
+            }catch{
                 res.Content = "No record exists for " + username + " or the password is incorrect";
                 return res;
             }
-
-
         }
 
         public ActionResult AddUser()
@@ -85,10 +88,29 @@ namespace TelerikMvcApp1.Controllers
             return View();
         }
 
-        public ActionResult Main(string name)
+        public ActionResult EditUserInfo(long userid) 
         {
-            ViewBag.Message = "Chat, please!";
-            ViewBag.name = (string)name;
+            var db = ContextFactory.GetContextPerRequest();
+            var user = (from u in db.Users where u.User_id == userid select u).Single();
+            ViewBag.user = user;
+            return View();
+        }
+        
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SaveUserInfo(long userid, string username, string password) 
+        {
+            var db = ContextFactory.GetContextPerRequest();
+            var user = (from u in db.Users where u.User_id == userid select u).Single();
+            user.Username = username;
+            user.Password = password;
+            db.SaveChanges();
+            ViewBag.user = user;
+            return View("Main");
+        }
+
+        public ActionResult Main(string username)
+        {
+            ViewBag.name = (string)username;
             return View();
         }
 
