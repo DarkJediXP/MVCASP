@@ -25,11 +25,47 @@ namespace TelerikMvcApp1.Controllers
         public ActionResult ControlPanel()
         {
             var db = ContextFactory.GetContextPerRequest();
-            var user = from u in db.Users select u;
-            var count = (from u in db.Users select u).Count();
-            ViewBag.users = Json(user.ToArray());
-            ViewBag.count = Json(count);
+            var users = from u in db.Users select u;
+            ViewBag.users = users.ToArray();
             return View();
+        }
+
+        public ActionResult EditUser(long userid)
+        {
+            var db = ContextFactory.GetContextPerRequest();
+            var user = (from u in db.Users where u.User_id == userid select u).Single();
+            ViewBag.user = user;
+            return View();
+        }
+
+        public ActionResult SaveUser(long userid, string username, string password)
+        {
+            var db = ContextFactory.GetContextPerRequest();
+            var user = (from u in db.Users where u.User_id == userid select u).Single();
+            user.Username = username;
+            user.Password = password;
+            db.SaveChanges();
+            return RedirectToAction("ControlPanel", "Admin");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteUser(long userid)
+        {
+            var db = ContextFactory.GetContextPerRequest();
+            try
+            {
+                var user = (from u in db.Users where u.User_id == userid select u).Single();
+                if (user.Username != "Admin@test.com")
+                {
+                    db.Delete(user);
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                return RedirectToAction("ControlPanel", "Admin");
+            }
+            return RedirectToAction("ControlPanel", "Admin");
         }
     }
 }

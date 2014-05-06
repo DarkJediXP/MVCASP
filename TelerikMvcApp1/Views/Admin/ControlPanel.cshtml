@@ -1,37 +1,37 @@
-﻿@{
+﻿@model Core.User
+
+@{
     ViewBag.Title = "Edit Users Info";
     ViewBag.WelcomeMessage = "Control Panel";
-    var users = Json.Encode(@ViewBag.users);
-    var count = Json.Encode(@ViewBag.count);
+    var userArray = (Core.User[])ViewBag.users;
 }
 
-<div id="example" class="k-content">
-<div id="admin_grid"  style="font-size:11px;"> </div>
-<script>
 
-    $(document).ready(function() {
-        $("#admin_grid").kendoGrid({
-            dataSource: {
-                type: "jsonp",
-                serverPaging: true,
-                serverSorting: true,
-                pageSize: 30,
-                transport: {
-                    read: "~/Admin/ControPanel"
-                }
-            },
-            dataBound: findDoc,
-            scrollable: false,
-            sortable: true,
-            pageable: {
-    			pageSize: 30
-  			},
-            columns: [
-            	{ title: "Action", template: "<form action = @Url.Content("~/Admin/EditUser") method = 'POST'><input type = 'submit' value = 'Edit'></form>", width: 60},
-                { title: "User ID", field: "@users.user_id", width: 60 },
-                { title: "Username", field: "@users.username", width: 90 },
-                { title: "Active", field: "@users.active", width: 90 }]
-        });
-    });
-</script>
+<div class="container">
+    <h2>@ViewBag.WelcomeMessage</h2>
+</div>
+<div class="container">
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <td colspan="2">Actions</td>
+            <td>User Id</td>
+            <td>Username</td>
+            <td>Active</td>
+        </tr>
+        @foreach (var user in userArray) { 
+        <tr>
+            <td><form action="@Url.Content("~/Admin/EditUser")" method="post"><button type="submit" class="btn btn-success" name="userid"value="@user.User_id">Edit</button></form></td>
+            <td><form action="@Url.Content("~/Admin/DeleteUser")" method="post"><button type="submit" class="btn btn-success" name="userid" value="@user.User_id">Delete</button></form></td>
+            <td>@user.User_id</td>
+            <td>@user.Username</td>
+            <td>@user.Active</td>
+        </tr>
+        }
+
+    </table>
+</div>
+<div class="container">
+    <form action="@Url.Content("~/Admin/Main")" method="post">
+        <button type="submit" class="btn btn-success btn-lg btn-block">Back to Control Panel</button>
+    </form>
 </div>

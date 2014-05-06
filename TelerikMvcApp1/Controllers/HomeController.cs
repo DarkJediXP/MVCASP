@@ -41,7 +41,7 @@ namespace TelerikMvcApp1.Controllers
                                   u.Password == password
                             select u).Single();
 
-                if (user != null && user.Username == "Admin" && user.Password == "test")
+                if (user != null && user.Username == "Admin@test.com" && user.Password == "test")
                 {
                     ViewBag.user= user;
                     return RedirectToAction("Main", "Admin", new { name = username });

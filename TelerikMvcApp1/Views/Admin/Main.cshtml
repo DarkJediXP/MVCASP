@@ -3,27 +3,27 @@
     ViewBag.WelcomeMessage = "Admin Main Menu";
 }
 
-<div style="float: left; width: 350px;">
-        <table>
-            <tr>
-                <h5>@ViewBag.WelcomeMessage</h5>
-                <td>
-                    <form action="@Url.Content("~/Home/Chat")" method="post">
-                        <input type="hidden" value ="@ViewBag.name" name="username">
-                        <input type="submit" value="Chat">
-                    </form>
-                </td>
-            <tr>
-                <td>
-                    <form action="@Url.Content("~/Admin/ControlPanel")" method="post">
-                        <input type="hidden" value="@ViewBag.name" name="username">
-                        <input type="submit" value="Control Panel">
-                    </form>
-                </td>
-            </tr>
-        </table>
-</div>
 
-<script type="text/javascript">
-    $('#displayname').val("@ViewBag.name");
-</script>
+<div class="container">
+    <h2>@ViewBag.WelcomeMessage</h2>
+</div>
+<div class="jumbotron" align="center">
+    <table>
+        <tr>
+            <td>
+                <form role="form" action="@Url.Content("~/Home/Chat")" style="text-align:center" method="post">
+                    <input type="hidden" value="@ViewBag.name" name="username">
+                    <button type="submit" class="btn btn-success btn-lg">Chat</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br />
+                <form role="form" action="@Url.Content("~/Admin/ControlPanel")" style="text-align:center" method="post">
+                    <button type="submit" class="btn btn-success btn-lg">Control Panel</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
