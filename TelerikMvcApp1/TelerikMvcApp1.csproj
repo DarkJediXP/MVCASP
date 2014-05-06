@@ -207,6 +207,13 @@
     <Compile Include="Realtime\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\css\bootstrap-theme.css" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\css\bootstrap.css" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\js\bootstrap.js" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\js\bootstrap.min.js" />
     <Content Include="Content\kendo\2014.1.415\Black\editor.png" />
     <Content Include="Content\kendo\2014.1.415\Black\imagebrowser.png" />
     <Content Include="Content\kendo\2014.1.415\Black\indeterminate.gif" />
@@ -424,6 +431,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\kendo\2014.1.415\images\kendoui.ttf" />
     <Content Include="Content\kendo\2014.1.415\images\kendoui.woff" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\css\bootstrap-theme.css.map" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bootstrap\bootstrap-3.1.1-dist\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

@@ -3,7 +3,7 @@
 @model Core.User
 @{
     ViewBag.Title = "NakamaChat";
-    ViewBag.LoginMessage = "Please log in to NakamaChat!";
+    ViewBag.LoginMessage = "NakamaChat!";
     //
     Core.User userObject = (Core.User)ViewBag.User;
 }
@@ -11,25 +11,38 @@
 
 
 <!-- Form for users to log in to the application, Url.Content brings up a new view -->
-<div style="float: left; width: 350px;">
+<blockquote><p>"Best chat client I ever used!"</p><p><small>Bill Gates</small></p></blockquote>
+
+<div class="jumbotron" align="center">
     <form action="@Url.Content("~/Home/AuthenticateUser")" method="post">
+        <h1>@ViewBag.LoginMessage</h1>
+        <p>Place to meet friends</p>
         <table>
             <tr>
                 <!--Had to use the "at"  symbol here to echo out-->
-                <h5>@ViewBag.LoginMessage</h5>
-                <td>Username:</td>
                 <!--Passing as a viewbag instead of passing as a model-->
-                <td><input id="Username" name="Username" type="text" /></td>
+                <td><input type="email" class="form-control" id="Username" name="Username" placeholder="Username" /></td>
             </tr>
+
             <tr>
-                <td>Password:</td>
-                <td><input id="Password" name="Password" type="password" /></td>
+                <td><br /><input type="email" class="form-control" id="Password" name="Password" placeholder="Password" /></td>
             </tr>
+
         </table>
-        <input type="submit" value="Submit" style="float: right; width: 150px;">
+        <br />
+        <div align="center">
+            <label>
+                Remember me  <input type="checkbox">
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Sign in</button>
 
 
     </form>
+</div>
+<div align="center">
+    <img border="0" src="/images/happyface.png" alt="Pulpit rock" width="200" height="200">
 </div>
 
 
