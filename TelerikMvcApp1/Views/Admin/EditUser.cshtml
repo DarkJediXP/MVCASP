@@ -1,14 +1,15 @@
-﻿@{
+﻿@model Core.User
+
+@{
     ViewBag.Title = "Edit User Info";
     ViewBag.WelcomeMessage = "Edit User";
+    var adminUserObject = ViewBag.adminUser;
     Core.User userObject = (Core.User)ViewBag.user;
 }
 
 <div class="container">
-    <h2>@ViewBag.WelcomeMessage</h2>
-</div>
-<div class="container">
     <form role="form" action="@Url.Content("~/Admin/SaveUser")" method="post">
+        <input type="hidden" value="@adminUserObject" name="adminUser">
         <input type="hidden" value="@userObject.User_id" name="userid">
         <div class="form-group">
             <label for="exampleInputEmail1">New Username</label>

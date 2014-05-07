@@ -16,40 +16,43 @@ namespace TelerikMvcApp1.Controllers
             return View();
         }
 
-        public ActionResult Main(string name)
+        public ActionResult Main(string adminUser)
         {
-            ViewBag.name = (string)name;
+            ViewBag.adminUser = adminUser;
             return View();
         }
 
-        public ActionResult ControlPanel()
+        public ActionResult ControlPanel(string adminUsername)
         {
             var db = ContextFactory.GetContextPerRequest();
             var users = from u in db.Users select u;
+            ViewBag.adminUser = adminUsername;
             ViewBag.users = users.ToArray();
             return View();
         }
 
-        public ActionResult EditUser(long userid)
+        public ActionResult EditUser(long userid, string adminUser)
         {
             var db = ContextFactory.GetContextPerRequest();
             var user = (from u in db.Users where u.User_id == userid select u).Single();
+            ViewBag.adminUser = adminUser;
             ViewBag.user = user;
             return View();
         }
 
-        public ActionResult SaveUser(long userid, string username, string password)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SaveUser(long userid, string username, string password, string adminUser)
         {
             var db = ContextFactory.GetContextPerRequest();
             var user = (from u in db.Users where u.User_id == userid select u).Single();
             user.Username = username;
             user.Password = password;
             db.SaveChanges();
-            return RedirectToAction("ControlPanel", "Admin");
+            return RedirectToAction("ControlPanel", "Admin", new { adminUsername = adminUser});
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult DeleteUser(long userid)
+        public ActionResult DeleteUser(long userid, string adminUser)
         {
             var db = ContextFactory.GetContextPerRequest();
             try
@@ -63,9 +66,11 @@ namespace TelerikMvcApp1.Controllers
             }
             catch
             {
-                return RedirectToAction("ControlPanel", "Admin");
+                ViewBag.adminUser = adminUser;
+                return RedirectToAction("ControlPanel", "Admin", new { adminUsername = adminUser });
             }
-            return RedirectToAction("ControlPanel", "Admin");
+            ViewBag.adminUser = adminUser;
+            return RedirectToAction("ControlPanel", "Admin", new { adminUsername = adminUser });
         }
     }
 }

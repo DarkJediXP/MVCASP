@@ -4,10 +4,30 @@
 @{
     ViewBag.Title = "NakamaChat";
     ViewBag.LoginMessage = "NakamaChat!";
-    //
-    Core.User userObject = (Core.User)ViewBag.User;
 }
 
+<style>
+    a:link {
+        color: green;
+        text-decoration: none;
+        border-bottom-width: 0px;
+    }
+    a:hover {
+        color: green;
+        background-color: transparent;
+        border-bottom-width: 0px;
+    }
+    a:active {
+        color: green;
+        background-color: transparent;
+        border-bottom-width: 0px;
+    }
+    a:visited {
+        color: green;
+        background-color: transparent;
+        border-bottom-width: 0px;
+    }
+</style>
 
 
 <!-- Form for users to log in to the application, Url.Content brings up a new view -->
@@ -36,7 +56,7 @@
             </label>
         </div>
 
-        <button type="submit" class="btn btn-success">Sign in</button>
+        <button type="submit" class="btn btn-success">Sign in</button> or <a href="@Url.Content("~/Home/AddUser")">Join NakamaChat</a>
 
 
     </form>

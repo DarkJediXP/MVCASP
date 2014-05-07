@@ -4,6 +4,7 @@
     ViewBag.Title = "Edit Users Info";
     ViewBag.WelcomeMessage = "Control Panel";
     var userArray = (Core.User[])ViewBag.users;
+    var userObject = ViewBag.adminUser;
 }
 
 
@@ -20,8 +21,8 @@
         </tr>
         @foreach (var user in userArray) { 
         <tr>
-            <td><form action="@Url.Content("~/Admin/EditUser")" method="post"><button type="submit" class="btn btn-success" name="userid"value="@user.User_id">Edit</button></form></td>
-            <td><form action="@Url.Content("~/Admin/DeleteUser")" method="post"><button type="submit" class="btn btn-success" name="userid" value="@user.User_id">Delete</button></form></td>
+            <td><form action="@Url.Content("~/Admin/EditUser")" method="post"><input type="hidden" value="@userObject" name="adminUser"><button type="submit" class="btn btn-success" name="userid"value="@user.User_id">Edit</button></form></td>
+            <td><form action="@Url.Content("~/Admin/DeleteUser")" method="post"><input type="hidden" value="@userObject" name="adminUser"><button type="submit" class="btn btn-success" name="userid" value="@user.User_id">Delete</button></form></td>
             <td>@user.User_id</td>
             <td>@user.Username</td>
             <td>@user.Active</td>
@@ -32,6 +33,7 @@
 </div>
 <div class="container">
     <form action="@Url.Content("~/Admin/Main")" method="post">
-        <button type="submit" class="btn btn-success btn-lg btn-block">Back to Control Panel</button>
+        <input type="hidden" value="@userObject" name="adminUser">
+        <button type="submit" class="btn btn-success btn-lg btn-block">Back to Main Menu</button>
     </form>
 </div>

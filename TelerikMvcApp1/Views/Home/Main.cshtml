@@ -4,10 +4,12 @@
     Core.User userObject = (Core.User)ViewBag.user;
 }
 
+<div class="container">
+    <h5>@ViewBag.WelcomeMessage</h5>
+</div>
 <div style="float: left; width: 350px;">
         <table>
             <tr>
-                <h5>@ViewBag.WelcomeMessage</h5>
                 <td>
                     <form action="@Url.Content("~/Home/Chat")" method="post">
                         <input type="hidden" value ="@userObject.Username" name="username">

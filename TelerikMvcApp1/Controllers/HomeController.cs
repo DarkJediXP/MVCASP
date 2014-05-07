@@ -28,10 +28,8 @@ namespace TelerikMvcApp1.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AuthenticateUser(Core.User userToAdd, string password)
+        public ActionResult AuthenticateUser(string username, string password)
         {
-            // gets the user name from the form in the index view
-            string username = userToAdd.Username;
             ContentResult res = new ContentResult();
 
             var db = ContextFactory.GetContextPerRequest();
@@ -43,8 +41,8 @@ namespace TelerikMvcApp1.Controllers
 
                 if (user != null && user.Username == "Admin@test.com" && user.Password == "test")
                 {
-                    ViewBag.user= user;
-                    return RedirectToAction("Main", "Admin", new { name = username });
+                    ViewBag.adminUser= user;
+                    return RedirectToAction("Main", "Admin", new { adminUser = username });
                 }
                 else
                 {
@@ -81,6 +79,7 @@ namespace TelerikMvcApp1.Controllers
 
 
         // This is the controller for the Chat() view
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Chat(string username)
         {
             ViewBag.Message = "Chat, please!";
@@ -88,6 +87,7 @@ namespace TelerikMvcApp1.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditUserInfo(long userid) 
         {
             var db = ContextFactory.GetContextPerRequest();
@@ -108,6 +108,7 @@ namespace TelerikMvcApp1.Controllers
             return View("Main");
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Main(string username)
         {
             ViewBag.name = (string)username;

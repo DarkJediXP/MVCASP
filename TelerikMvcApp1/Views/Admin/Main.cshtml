@@ -1,6 +1,9 @@
-﻿@{
+﻿@model Core.User
+
+@{
     ViewBag.Title = "Main";
     ViewBag.WelcomeMessage = "Admin Main Menu";
+    var userObject= ViewBag.adminUser;
 }
 
 
@@ -12,7 +15,7 @@
         <tr>
             <td>
                 <form role="form" action="@Url.Content("~/Home/Chat")" style="text-align:center" method="post">
-                    <input type="hidden" value="@ViewBag.name" name="username">
+                    <input type="hidden" value="@userObject" name="username">
                     <button type="submit" class="btn btn-success btn-lg">Chat</button>
                 </form>
             </td>
@@ -21,6 +24,7 @@
             <td>
                 <br />
                 <form role="form" action="@Url.Content("~/Admin/ControlPanel")" style="text-align:center" method="post">
+                    <input type="hidden" value="@userObject" name="adminUsername">
                     <button type="submit" class="btn btn-success btn-lg">Control Panel</button>
                 </form>
             </td>
