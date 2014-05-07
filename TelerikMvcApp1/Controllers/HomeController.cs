@@ -68,13 +68,20 @@ namespace TelerikMvcApp1.Controllers
             return View();
         }
 
-
-        // This is the controller for the Contact view
-        public ActionResult SignUp()
+        public ActionResult Signup()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+
+        public ActionResult JoinUser(string username, string password)
+        {
+            var db = ContextFactory.GetContextPerRequest();
+            Core.User user = new Core.User();
+            user.Username = username;
+            user.Password = password;
+            db.Add(user);
+            db.SaveChanges();
+            return View("Index");
         }
 
 
