@@ -79,7 +79,6 @@ namespace TelerikMvcApp1.Controllers
 
 
         // This is the controller for the Chat() view
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Chat(string username)
         {
             ViewBag.Message = "Chat, please!";
@@ -87,7 +86,6 @@ namespace TelerikMvcApp1.Controllers
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditUserInfo(long userid) 
         {
             var db = ContextFactory.GetContextPerRequest();
@@ -108,7 +106,6 @@ namespace TelerikMvcApp1.Controllers
             return View("Main");
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Main(string username)
         {
             ViewBag.name = (string)username;
