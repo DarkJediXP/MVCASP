@@ -25,12 +25,13 @@
         <table>
             <tr>
                 <td>
-                    <div id="hello">
-
-                    </div>
+                    <div id="weather"></div>
                 </td>
                 <td>
-                    <h1 style="margin-left: 300px;" align="right">Buddies <span class="glyphicon glyphicon-user"></span></h1>
+                    <h1 style="margin-left: 125px;"> News <span class="glyphicon glyphicon-th-list"></span></h1>
+                </td>
+                <td>
+                    <h1 style="margin-left: 125px;"> Buddies <span class="glyphicon glyphicon-user"></span></h1>
                 </td>
             </tr>
             <tr>
@@ -39,8 +40,13 @@
                     <div id='chat_area' class="DivToScroll DivWithScroll" style="margin-left: 40px; float: left;" contenteditable></div>
                 </td>
                 <td>
+                    <div class="panel panel-info" style=" background-color: #99FF66; margin-left: 80px; width: 400px;">
+                        <script type='text/javascript' charset='utf-8' src='http://scripts.hashemian.com/jss/feed.js?print=yes&numlinks=10&summarylen=50&seedate=yes&popwin=no&url=http:%2F%2Frss.cnn.com%2Frss%2Fcnn_topstories.rss'></script>
+                    </div>
+                </td>
+                <td>
                     <div class="textarea">
-                        <textarea style="margin-left: 300px;" readonly id="Buddies"></textarea>
+                        <textarea style="margin-left: 100px;" readonly id="Buddies"></textarea>
                     </div>
                 </td>
                 <td></td>
@@ -74,7 +80,7 @@
     var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com/philadelphia/currently');
     weatherRef.child('temperature').on('value', function (snapshot) {
         console.log('Temperature is currently ' + snapshot.val());
-        $('#hello').html('<h1><span class="glyphicon glyphicon-cloud-download"></span> Weather ' + snapshot.val() + '</h1>');
+        $('#weather').html('<h1><span class="glyphicon glyphicon-cloud-download"></span> Weather ' + snapshot.val() + '</h1>');
     });
    
     $(function () {
@@ -89,20 +95,15 @@
             var encodedName = $('<div />').text(name).html();
             var encodedMsg = $('<div />').text(message).html();
             var actualMessage = encodedName + ' : ' + encodedMsg;
-            // Add the message to the page.
-            //$('#discussion').append('<li><strong>' + encodedName
-            //   + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
             if("@ViewBag.name" == name){
                 $('#chat_area').append('<p class="triangle-isosceles right">' + actualMessage + '</p>');
             }
             else {
                 $('#chat_area').append('<p class="triangle-right left">' + actualMessage + '</p>');
             }
-           // $('#discussion').val($('#discussion').val() + encodedName + ": " + encodedMsg + "\n");
         };
         console.log("@ViewBag.name");
         // Get the user name and store it to prepend to messages.
-        // $('#displayname').val(prompt('Enter your name:', ''));
         $('#displayname').val("@ViewBag.name");
         console.log($('#displayname').val());
         // Set initial focus to message input box.

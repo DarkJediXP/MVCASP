@@ -14,6 +14,16 @@
     <table>
         <tr>
             <td>
+                <button style="text-align:center" class="btn btn-primary" type="button">
+                    Users Online<span class="badge"> @ViewBag.activeUserCount</span>
+                </button>
+                <br />
+                <br />
+            </td>
+            
+        </tr>
+        <tr>
+            <td>
                 <form role="form" action="@Url.Content("~/Home/Chat")" style="text-align:center" method="post">
                     <input type="hidden" value="@userObject" name="username">
                     <button type="submit" class="btn btn-success btn-lg">Chat</button>

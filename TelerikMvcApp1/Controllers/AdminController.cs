@@ -19,6 +19,19 @@ namespace TelerikMvcApp1.Controllers
         public ActionResult Main(string adminUser)
         {
             ViewBag.adminUser = adminUser;
+            ContentResult res = new ContentResult();
+            var db = ContextFactory.GetContextPerRequest();
+            try
+            {
+                ViewBag.activeUserCount = (from u in db.Users
+                                           where u.Active == 1
+                                           select u).Count();
+            }
+            catch
+            {
+                res.Content = "error in count function";
+                return res;
+            }
             return View();
         }
 

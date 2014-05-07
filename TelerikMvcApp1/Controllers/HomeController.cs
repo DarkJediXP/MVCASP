@@ -16,7 +16,7 @@ namespace TelerikMvcApp1.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";
-
+            
             return View();
         }
 
@@ -121,6 +121,19 @@ namespace TelerikMvcApp1.Controllers
         public ActionResult Main(string username)
         {
             ViewBag.name = (string)username;
+            ContentResult res = new ContentResult();
+            var db = ContextFactory.GetContextPerRequest();
+            try
+            {
+                ViewBag.activeUserCount = (from u in db.Users
+                                           where u.Active == 1
+                                           select u).Count();
+            }
+            catch
+            {
+                res.Content = "error in count function";
+                return res;
+            }
             return View();
         }
 
