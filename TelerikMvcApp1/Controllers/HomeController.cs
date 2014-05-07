@@ -41,11 +41,15 @@ namespace TelerikMvcApp1.Controllers
 
                 if (user != null && user.Username == "Admin@test.com" && user.Password == "test")
                 {
+                    user.Active = 1;
+                    db.SaveChanges();
                     ViewBag.adminUser= user;
                     return RedirectToAction("Main", "Admin", new { adminUser = username });
                 }
                 else
                 {
+                    user.Active = 1;
+                    db.SaveChanges();
                     ViewBag.user = user;
                     return View("Main");
                 }
@@ -68,18 +72,25 @@ namespace TelerikMvcApp1.Controllers
             return View();
         }
 
-
-        // This is the controller for the Contact view
-        public ActionResult SignUp()
+        public ActionResult Signup()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+
+        public ActionResult JoinUser(string username, string password)
+        {
+            var db = ContextFactory.GetContextPerRequest();
+            Core.User user = new Core.User();
+            user.Username = username;
+            user.Password = password;
+            user.Active = 0;
+            db.Add(user);
+            db.SaveChanges();
+            return View("Index");
         }
 
 
         // This is the controller for the Chat() view
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Chat(string username)
         {
             ViewBag.Message = "Chat, please!";
@@ -87,7 +98,6 @@ namespace TelerikMvcApp1.Controllers
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditUserInfo(long userid) 
         {
             var db = ContextFactory.GetContextPerRequest();
@@ -108,7 +118,6 @@ namespace TelerikMvcApp1.Controllers
             return View("Main");
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Main(string username)
         {
             ViewBag.name = (string)username;

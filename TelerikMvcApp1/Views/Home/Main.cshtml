@@ -4,29 +4,28 @@
     Core.User userObject = (Core.User)ViewBag.user;
 }
 
-<div class="container">
-    <h5>@ViewBag.WelcomeMessage</h5>
-</div>
-<div style="float: left; width: 350px;">
-        <table>
-            <tr>
-                <td>
-                    <form action="@Url.Content("~/Home/Chat")" method="post">
-                        <input type="hidden" value ="@userObject.Username" name="username">
-                        <input type="submit" value="Chat">
-                    </form>
-                </td>
-            <tr>
-                <td>
-                    <form action="@Url.Content("~/Home/EditUserInfo")" method="post">
-                        <input type="hidden" value="@userObject.User_id" name="userid">
-                        <input type="submit" value="Edit Info">
-                    </form>
-                </td>
-            </tr>
-        </table>
-</div>
 
-<script type="text/javascript">
-    $('#displayname').val("@ViewBag.name");
-</script>
+<div class="container">
+    <h2>@ViewBag.WelcomeMessage</h2>
+</div>
+<div class="jumbotron" align="center">
+    <table>
+        <tr>
+            <td>
+                <form role="form" action="@Url.Content("~/Home/Chat")" style="text-align:center" method="post">
+                    <input type="hidden" value="@userObject.Username" name="username">
+                    <button type="submit" class="btn btn-success btn-lg">Chat</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br />
+                <form role="form" action="@Url.Content("~/Home/EditUserInfo")" style="text-align:center" method="post">
+                    <input type="hidden" value="@userObject.User_id" name="userid">
+                    <button type="submit" class="btn btn-success btn-lg">Edit Info</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>

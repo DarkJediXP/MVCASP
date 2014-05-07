@@ -1,0 +1,60 @@
+﻿<!--Every view is BOUND/MARRIED to a controller i can not post to another controller-->
+<!--I can bring up another view from this view-->
+@model Core.User
+@{
+    ViewBag.Title = "NakamaChat";
+    ViewBag.LoginMessage = "NakamaChat!";
+}
+
+<style>
+    a:link {
+        color: green;
+        text-decoration: none;
+        border-bottom-width: 0px;
+    }
+
+    a:hover {
+        color: green;
+        background-color: transparent;
+        border-bottom-width: 0px;
+    }
+
+    a:active {
+        color: green;
+        background-color: transparent;
+        border-bottom-width: 0px;
+    }
+
+    a:visited {
+        color: green;
+        background-color: transparent;
+        border-bottom-width: 0px;
+    }
+</style>
+
+
+<!-- Form for users to sign up to the application, Url.Content brings up a new view -->
+<blockquote><p>"Best chat client I ever used!"</p><p><small>Bill Gates</small></p></blockquote>
+
+<div class="jumbotron" align="center">
+    <form action="@Url.Content("~/Home/JoinUser")" method="post">
+        <h1>@ViewBag.LoginMessage</h1>
+        <p>We're so happy to have you!</p>
+        <table>
+            <tr>
+                <td><input type="email" class="form-control" id="Username" name="Username" placeholder="Enter your email" /></td>
+            </tr>
+
+            <tr>
+                <td><br /><input type="password" class="form-control" id="Password" name="Password" placeholder="Enter a password" /></td>
+            </tr>
+        </table>
+<br />
+
+<button type="submit" class="btn btn-success">Join!</button>
+
+    </form>
+</div>
+<div align="center">
+    <img border="0" src="/images/happyface.png" alt="Pulpit rock" width="200" height="200">
+</div>

@@ -4,12 +4,15 @@
     Core.User userObject = (Core.User)ViewBag.user;
 }
 
-<div style="float: left;">
+<div class="container">
+    <h1>@ViewBag.Title</h1>
+</div>
+<div class="page-header">
+    <h1><small> change your user name or password</small></h1>
+</div>
+<div class="container" align="center">
     <form action="@Url.Content("~/Home/SaveUserInfo")" method="post">
         <input type="hidden" value="@userObject.User_id" name="userid">
-        <div class="page-header">
-            <h1>@ViewBag.Title<small> change your user name or password</small></h1>
-        </div>
         <table>
             <tr>               
                 <td><br />New Username:</td>
@@ -21,6 +24,6 @@
             </tr>
         </table>
         <br />
-        <button type="submit" class="btn btn-success" style="margin-left: 175px">Update Info</button>
+        <button type="submit" class="btn btn-success">Update Info</button>
     </form>
 </div>
