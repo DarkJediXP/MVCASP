@@ -41,11 +41,15 @@ namespace TelerikMvcApp1.Controllers
 
                 if (user != null && user.Username == "Admin@test.com" && user.Password == "test")
                 {
+                    user.Active = 1;
+                    db.SaveChanges();
                     ViewBag.adminUser= user;
                     return RedirectToAction("Main", "Admin", new { adminUser = username });
                 }
                 else
                 {
+                    user.Active = 1;
+                    db.SaveChanges();
                     ViewBag.user = user;
                     return View("Main");
                 }
@@ -79,7 +83,7 @@ namespace TelerikMvcApp1.Controllers
             Core.User user = new Core.User();
             user.Username = username;
             user.Password = password;
-            user.Active = 1;
+            user.Active = 0;
             db.Add(user);
             db.SaveChanges();
             return View("Index");
