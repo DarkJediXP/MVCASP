@@ -30,7 +30,7 @@
                     </div>
                 </td>
                 <td>
-                    <h1 style="margin-left: 300px;" align="right">Buddies</h1>
+                    <h1 style="margin-left: 300px;" align="right">Buddies <span class="glyphicon glyphicon-user"></span></h1>
                 </td>
             </tr>
             <tr>
@@ -56,9 +56,10 @@
             </tr>
             <tr>
                 <td>
-                    <button style="margin-left: 280px;" type="submit" class="btn btn-success" id="sendmessage">Send</button>
+                    <button style="margin-left: 260px;" type="submit" class="btn btn-success" id="sendmessage">Send <span class="glyphicon glyphicon-send"></span></button>
                     <!--<input style="margin-left: 40px;" type="button" id="sendmessage" value="Send" />-->
                 </td>
+
             </tr>
         </table>
 
@@ -73,7 +74,7 @@
     var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com/philadelphia/currently');
     weatherRef.child('temperature').on('value', function (snapshot) {
         console.log('Temperature is currently ' + snapshot.val());
-        $('#hello').html('<h1>Local temp is currently ' + snapshot.val() + '</h1>');
+        $('#hello').html('<h1><span class="glyphicon glyphicon-cloud-download"></span> Weather ' + snapshot.val() + '</h1>');
     });
    
     $(function () {
