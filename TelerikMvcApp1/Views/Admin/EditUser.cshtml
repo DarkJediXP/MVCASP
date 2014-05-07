@@ -7,18 +7,21 @@
     Core.User userObject = (Core.User)ViewBag.user;
 }
 
-<div class="container">
+<div class="container" align="center">
     <form role="form" action="@Url.Content("~/Admin/SaveUser")" method="post">
         <input type="hidden" value="@adminUserObject" name="adminUser">
         <input type="hidden" value="@userObject.User_id" name="userid">
-        <div class="form-group">
-            <label for="exampleInputEmail1">New Username</label>
-            <input type="email" class="form-control" id="username" name="username" placeholder="@userObject.Username">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">New Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="@userObject.Password">
-        </div>
-        <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        <table>
+            <tr>
+                <td><br />New Username:</td>
+                <td><br /><input type="email" class="form-control" id="username" name="username" placeholder="@userObject.Username"></td>
+            </tr>
+            <tr>
+                <td><br />New Password:</td>
+                <td><br /><input type="password" class="form-control" id="password" name="password" placeholder="@userObject.Password"></td>
+            </tr>
+        </table>
+        <br />
+        <button type="submit" class="btn btn-success btn-lg">Update Info</button>
     </form>
 </div>

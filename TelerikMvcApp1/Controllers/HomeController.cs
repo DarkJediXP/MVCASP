@@ -79,6 +79,7 @@ namespace TelerikMvcApp1.Controllers
             Core.User user = new Core.User();
             user.Username = username;
             user.Password = password;
+            user.Active = 1;
             db.Add(user);
             db.SaveChanges();
             return View("Index");
